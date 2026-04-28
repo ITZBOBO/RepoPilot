@@ -1,4 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { getServerSession } from 'next-auth'
+import { authOptions } from '@/lib/auth'
 
 function sanitize(v: unknown, maxLen: number): string {
   if (typeof v !== 'string') return ''
@@ -10,8 +12,8 @@ function sanitizeArray(arr: unknown, maxLen: number, maxItems = 8): string[] {
 }
 
 export async function POST(req: NextRequest) {
-  const session = req.cookies.get('repopilot_session')?.value
-  if (!session) return NextResponse.json({ error: 'Unauthorised.' }, { status: 401 })
+  const session = await getServerSession(authOptions)
+  if (!session?.user) return NextResponse.json({ error: 'Unauthorised.' }, { status: 401 })
 
   const apiKey = process.env.ANTHROPIC_API_KEY
   if (!apiKey) return NextResponse.json({ error: 'AI service not configured.' }, { status: 503 })
@@ -79,7 +81,7 @@ Rules:
     const r = await fetch('https://api.anthropic.com/v1/messages', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'x-api-key': apiKey as string, 'anthropic-version': '2023-06-01' },
-      body: JSON.stringify({ model: 'claude-haiku-4-5-20251001', max_tokens: 4000, messages: [{ role: 'user', content: p }] }),
+      body: JSON.stringify({ model: 'claude-3-5-haiku-20241022', max_tokens: 4000, messages: [{ role: 'user', content: p }] }),
     })
     if (!r.ok) throw new Error(`Claude ${r.status}`)
     const d = await r.json()
