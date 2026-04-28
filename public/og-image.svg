@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" fill="none">
+  <rect width="1200" height="630" fill="#070E1A"/>
+  <rect x="0" y="0" width="1200" height="630" fill="url(#grad)"/>
+  <defs>
+    <radialGradient id="grad" cx="50%" cy="40%" r="60%">
+      <stop offset="0%" stop-color="#2563EB" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#070E1A" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <!-- Logo dot -->
+  <circle cx="480" cy="240" r="10" fill="#F59E0B"/>
+  <!-- Title -->
+  <text x="500" y="255" font-family="system-ui,sans-serif" font-size="52" font-weight="800" fill="white">RepoPilot</text>
+  <!-- Tagline -->
+  <text x="480" y="310" font-family="system-ui,sans-serif" font-size="24" font-weight="300" fill="#94A3B8">Build the GitHub projects that actually get you hired</text>
+  <!-- Badge -->
+  <rect x="480" y="340" width="200" height="36" rx="18" fill="rgba(37,99,235,0.2)" stroke="#2563EB" stroke-opacity="0.4" stroke-width="1"/>
+  <text x="560" y="363" font-family="system-ui,sans-serif" font-size="13" font-weight="700" fill="#60A5FA">AI-powered · Free to start</text>
+</svg>
